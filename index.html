@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>
+        MustangV2
+    </title>
+    <link rel="stylesheet" href="index.css">
+    <link href = "https://code.jquery.com/ui/1.10.4/themes/ui-lightness/jquery-ui.css" rel = "stylesheet">
+    <script src = "https://code.jquery.com/jquery-1.10.2.js"></script>
+    <script src = "https://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
+    <script type="text/javascript">
+
+    $(function() {
+
+    $(document).ready(function() {
+    $("#zipID").keyup(function() {
+        var el = $(this);
+
+        if (el.val().length === 5) {
+            $.ajax({
+                url: "http://zip.elevenbasetwo.com",
+                cache: false,
+                dataType: "json",
+                type: "GET",
+                data: "zip=" + el.val(),
+                success: function(result, success) {
+                    $("#cityID").val(result.cityID);
+                    $("#stateID").val(result.stateID);
+                }
+            });
+        }
+    });
+});
+
+            var availableTutorials  =  [
+               "Diya Patel",
+               "Micky Mouse",
+               "Wonder Women"
+               
+            ];
+            $( "#fullName" ).autocomplete({
+               source: availableTutorials
+            });
+
+            var emails  =  [
+               "diyapatel@lewisu.edu",
+               "mickymouse@lewisu.edu",
+               "wonderwomen@lewisu.edu"
+               
+            ];
+            $( "#emailID" ).autocomplete({
+               source: emails
+            });
+
+            var city =  [
+               "Naperville",
+               "Action",
+               "Orlando"
+               
+            ];
+            $( "#cityID" ).autocomplete({
+               source: city
+            });
+
+            var state =  [
+               "Illinois",
+               "florida",
+               "New Jersey"
+               
+            ];
+            $( "#stateID" ).autocomplete({
+               source: state
+            });
+         });
+        
+</script>
+
+
+<body>
+
+    
+    <table>
+        <tr>
+            <td>
+                <form onsubmit="event.preventDefault();onFormSubmit();" autocomplete="off" class="fancy" method="post">
+                    <div class = "ui-widget">
+                        <label for = "automplete-1">Name </label>
+                        
+                        <label class="validation-error hide" id="fullNameValidationError">This field is required.</label>
+                        <input type="text" name="fullName" id="fullName">
+                    </div>
+
+                    <div class = "ui-widget">
+                        <label for = "automplete-1">Email</label>
+                        
+                        <input type="text" name="empCode" id="emailID">
+                    </div>
+                    
+                    <div class = "ui-widget">
+                        <label for = "automplete-1">City</label>
+                        <input type="text" name="salary" id="cityID">
+                    </div>
+
+                    <div class = "ui-widget">
+                        <label for = "automplete-1">State</label>
+                        <input type="text" name="city" id="stateID">
+                    </div>
+
+                    <div  class="form-action-buttons">
+                        <input type="submit" value="Add New Contact" onclick="add()">
+                    </div>
+
+                    <div  class="form-action-buttons">
+                        <input id="pre" type="button" value="Previous" onclick="previous()">
+                    </div>
+                    <div  class="form-action-buttons">
+                        <input id="btnNext" type="button" value="Next" onclick="next()">
+                    </div>
+                </form>
+                <tr>
+                    <td>Zip</td>
+                    <td>
+                        <input id="zipID" name="zip" type="text" pattern="[0-9]*" value="" maxlength="5" onfocus="zipFocusFunction()" onblur="zipBlurFunction()">
+                        
+                    </td>
+                </tr>
+            
+                    <h1>Mustang Version Two</h1>         
+            
+                     <p id = "statusID"> Contacts Loading %</p>
+                    <button onclick="loadIndex()">Load Index</button><br>
+                    Index:<p id="indexID"></p>
+            
+                    <button onclick="loadContacts()">Load Contacts</button><br>
+                    Contacts:<p id="contactsID"></p>
+                    
+            
+                    <button onclick="logContacts()">Log Contacts to Console</button><br>
+            
+                
+            </td>
+            <td>
+
+                <p id="statusID"></p>
+                <table class="list" id="updates">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>email</th>
+                            <th>City</th>
+                            <th>state</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+
+                    </tbody>
+                </table>
+            </td>
+        </tr>
+    </table>
+    <script src="main.js"></script>
+</body>
+
+</html>
