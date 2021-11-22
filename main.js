@@ -62,28 +62,6 @@ function readFormData() {
     return formData;
 }
 
-function add() {
-    var zip = document.getElementById("zipID").value
-    console.log("zip:"+zip);
-
-    console.log("function getPlace(zip) { ... }");
-    var xhr = new XMLHttpRequest();
-
-    // Register the embedded handler function
-    xhr.onreadystatechange = function() {
-        if (xhr.readyState == 4 && xhr.status == 200) {
-            var result = xhr.responseText;
-            console.log("result:"+result);
-            var place = result.split(', ');
-            if ((document.getElementById("cityID").value == "") || (document.getElementById("cityID").value == " "))
-                document.getElementById("cityID").value = place[0];
-            if (document.getElementById("stateID").value == "")
-                document.getElementById("stateID").value = place[1];
-        }
-    }
-    xhr.open("GET", "getCityState.php?zip=" + zip);
-    xhr.send(null);
-}
 // Taken from W3 tutorial and modified
 function autocomplete(inp, arr) {
     /*the autocomplete function takes two arguments,
@@ -182,7 +160,30 @@ function autocomplete(inp, arr) {
     });
   }
 
-// In conjunction with the above autocomplete function, showLookup() calls viewCurrentContact
+  function autoFill() {
+    var zip = document.getElementById("zipID").value
+    console.log("zip:"+zip);
+
+    console.log("function getPlace(zip) { ... }");
+    var xhr = new XMLHttpRequest();
+
+    // Register the embedded handler function
+    xhr.onreadystatechange = function() {
+        if (xhr.readyState == 4 && xhr.status == 200) {
+            var result = xhr.responseText;
+            console.log("result:"+result);
+            var place = result.split(', ');
+            if ((document.getElementById("cityID").value == "") || (document.getElementById("cityID").value == " "))
+                document.getElementById("cityID").value = place[0];
+            if (document.getElementById("stateID").value == "")
+                document.getElementById("stateID").value = place[1];
+        }
+    }
+    xhr.open("GET", "getCityState.php?zip=" + zip);
+    xhr.send(null);
+}
+
+//  showLookup() calls viewCurrentContact
 function showLookup(){
 
     var contactLookedUp = document.getElementById("myInput").value;
@@ -262,37 +263,29 @@ function validate() {
     return isValid;
 }
 
-function newContact(){
-    console.log('add()');
-    var newContact = {
+function add() {
+    var zip = document.getElementById("zipID").value
+    console.log("zip:"+zip);
 
-        preferredName: document.getElementById("fullName").value,
-        email: document.getElementById("emailID").value ,
-        city: document.getElementById("cityID").value,
-        state: document.getElementById("stateID").value ,
-        zip: document.getElementById("zipID").value ,
-        
-    }
-    first.push(newContact.firstName)
-    contactArray.push(newContact);
-    currentContactIndex = currentContactIndex + 1;
-    viewCurrentContact();
-    document.getElementById("contactsID").innerHTML = JSON.stringify(contactArray,null,2);
-}
+    console.log("function getPlace(zip) { ... }");
+    var xhr = new XMLHttpRequest();
 
-function remove(){
-    if(contactArray.length >1){
-        console.log('remove()');
-        contactArray.splice(currentContactIndex,1)
-        if(currentContactIndex>=1){
-            currentContactIndex=currentContactIndex-1;
+    // Register the embedded handler function
+    xhr.onreadystatechange = function() {
+        if (xhr.readyState == 4 && xhr.status == 200) {
+            var result = xhr.responseText;
+            console.log("result:"+result);
+            var place = result.split(', ');
+            if ((document.getElementById("cityID").value == "") || (document.getElementById("cityID").value == " "))
+                document.getElementById("cityID").value = place[0];
+            if (document.getElementById("stateID").value == "")
+                document.getElementById("stateID").value = place[1];
         }
-        console.log(contactArray)
-        viewCurrentContact();
-    }else{
-        console.log("Enter one contact please")
     }
+    xhr.open("GET", "getCityState.php?zip=" + zip);
+    xhr.send(null);
 }
+
 // function stores contact objects into a contactArray and logs it to the DOM
 async function nextContact(URL) {
    
@@ -326,12 +319,6 @@ async function nextContact(URL) {
         //Todo: Sort contacts array.
     }
     
-}
-
-function keyPressed() {
-    console.log('keyPressed()');
-
-    // This type of function should be useful in search as it implements keyPressed.
 }
 
 async function loadIndex() {
@@ -401,10 +388,6 @@ async function loadNextContact(URL) {
     }
 
 }
-
-
-
-
 
 // log contacts to console
 function logContacts() {

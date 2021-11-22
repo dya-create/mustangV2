@@ -46,7 +46,7 @@
                     
 
                     <class  class="form-action-buttons">
-                        <input type="submit" value="Add New Contact" onclick="add()">
+                        <input type="submit" value="Add New Contact">
                     </class>
 
                     <div  class="form-action-buttons">
@@ -61,7 +61,7 @@
                 <tr>
                     <td>Zip</td>
                     <td>
-                        <input id="zipID" name="zip" type="text" pattern="[0-9]*" value="" maxlength="5" onfocus="add()" onblur="add()">
+                        <input id="zipID" name="zip" type="text" pattern="[0-9]*" value="" maxlength="5" onfocus="autoFill()" onblur="autoFill()">
                         
                     </td>
                 </tr>

@@ -1,35 +1,54 @@
-.autocomplete {
-    /*the container must be positioned relative:*/
-    position: relative;
-    display: inline-block;
-  }
-
-
-  * { box-sizing: border-box; }
-body {
-  font: 16px Arial;
-}
+* { box-sizing: border-box; }
+body { 
+  font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  font-size: 13pt;
+  background-color: #1c2021;
+  color:#000;
+ }
 .autocomplete {
   /*the container must be positioned relative:*/
   position: relative;
-  display: inline-block;
+  display: flex;
+  flex-flow: column wrap;
+  align-items: center;
+  text-align: center;
+  
+  margin-left: auto;
+  margin-right: auto;
 }
+
 input {
   border: 1px solid transparent;
   background-color: #f1f1f1;
   padding: 10px;
   font-size: 16px;
+
+
 }
-input[type=text] {
-  background-color: #f1f1f1;
+input[type=search] {
+  background-color: #0c0b0b;
   width: 100%;
+  width: 130px;
+  box-sizing: border-box;
+  border: 2px solid #ccc;
+  border-radius: 4px;
+  font-size: 16px;
+  background-color: white;
+  background-position: 10px 10px; 
+  background-repeat: no-repeat;
+  padding: 12px 20px 12px 40px;
+  -webkit-transition: width 0.4s ease-in-out;
+  transition: width 0.4s ease-in-out;
 }
-input[type=submit] {
-  background-color: DodgerBlue;
-  color: #fff;
+input[type=search]:focus {
+  width: 15%;
 }
+
 .autocomplete-items {
-  position: absolute;
+  color:black;
+  margin-top: 0%;
+  width:15%;
+  position: flex;
   border: 1px solid #d4d4d4;
   border-bottom: none;
   border-top: none;
@@ -54,9 +73,33 @@ input[type=submit] {
   background-color: DodgerBlue !important;
   color: #ffffff;
 }
+
+.in {
+  position: relative;
+  display: flex;
+  flex-flow: column wrap;
+  align-items: center;
+  text-align: center;
+}
+
+button {
+  font-size: 15px;
+  margin-top:1em;
+  margin-bottom: 1em;
+  background-color: #ddd;
+  border: none;
+  color: black;
+  padding: 5px 10px;
+  text-decoration: none;
+  display: inline-block;
+  cursor: pointer;
+  border-radius: 16px;}
+
+  button:hover {
+    background-color: #f1f1f1;}
 body > table{
     width: 80%;
-    background-color: aqua;
+    
 }
 
 table{
